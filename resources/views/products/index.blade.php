@@ -14,7 +14,37 @@
                         </div>
                     @endif
 
-                    this is Products
+                    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Price</th>
+      <th scope="col"></th>
+      <th scope="col">action</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    
+        @foreach ($products as $item)
+    <tr>
+    <th scope="row">{{$item->id}}</th>
+      <td>{{$item->name}}</td>
+      <td>{{$item->price}}</td>
+      <td><a href="#" class="btn btn-sm btn-warning">Edit</a></td>
+        <td></td>
+        <td>
+            <form action="POST">
+                <input type="submit" value="Delete" class="btn btn-sm btn-danger">
+            </form>
+        </td>
+    </tr>      
+        @endforeach
+      
+    
+  </tbody>
+</table>
                 </div>
             </div>
         </div>
