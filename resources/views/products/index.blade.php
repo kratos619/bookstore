@@ -6,11 +6,11 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Products</div>
-
+            <a href="{{route('products.create')}}" class="btn btn-primary m-3"> Add New Product</a>
                 <div class="card-body">
-                    @if (session('status'))
+                    @if (session('success'))
                         <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                            {{ session('success') }}
                         </div>
                     @endif
 
@@ -26,7 +26,6 @@
     </tr>
   </thead>
   <tbody>
-    
         @foreach ($products as $item)
     <tr>
     <th scope="row">{{$item->id}}</th>
