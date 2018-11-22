@@ -73,12 +73,6 @@ class ProductsController extends Controller
         Session::flash('success', 'Product Added Successfuly');
 
         return redirect('products');
-
-
-
-
-
-        return \redirect('products.create');
     }
 
     /**
@@ -100,7 +94,8 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        //$selecte_id = Product::find($id);
+        return view('products.edit', ['product' => Product::find($id)]);
     }
 
     /**
@@ -112,7 +107,34 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required'
+        ]);
+
+        $selecte_product  = Product::find($id);
+
+        if ($request->hasFile('image')) {
+            $product_image = $request->image;
+
+//             $product_image = $request->image;
+
+            $product_image_new_name = time() . $product_image->getClientOriginalName();
+
+            $product_image->move('uploades/products', $product_image_new_name);
+
+            $selecte_product->save();
+        }
+
+        $selecte_product->name = $request->name;
+        $selecte_product->description = $request->description;
+        $selecte_product->price = $request->price;
+
+        $selecte_product->save();
+
+        Session::flash('success', 'Product Update');
+        return \redirect('products');
     }
 
     /**
@@ -123,6 +145,15 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $selecte_product = Product::find($id);
+     
+        if (file_exists($selecte_product->image)) {
+            unlink($selecte_product->image);
+        }
+
+        $selecte_product->delete();
+     
+        Session::flash('success', 'Product Is Delete');
+        return redirect('products');
     }
 }

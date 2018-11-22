@@ -31,14 +31,47 @@
     <th scope="row">{{$item->id}}</th>
       <td>{{$item->name}}</td>
       <td>{{$item->price}}</td>
-      <td><a href="#" class="btn btn-sm btn-warning">Edit</a></td>
+    <td>
+        <a href="{{ route('products.edit',['id' =>$item->id]) }}" class="btn btn-sm btn-warning">Edit</a>
+    </td>
         <td></td>
         <td>
-            <form action="POST">
-                <input type="submit" value="Delete" class="btn btn-sm btn-danger">
-            </form>
+                <button class="btn btn-sm btn-danger"
+        data-toggle="modal" data-target="#exampleModal{{$item->id}}"
+                >Delete</button>
+            
         </td>
-    </tr>      
+    </tr> 
+    
+    
+    <div class="modal fade" id="exampleModal{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Are You Sure You want to delete </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h3> {{$item->name}}</h3>  <br>
+       {{$item->price}} <br>
+       <p>{{$item->description}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <form action="{{ route('products.destroy',['id' => $item->id]) }}" method="POST" >
+        {{ csrf_field() }}
+            {{method_field('DELETE')}}
+            <button class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+
         @endforeach
       
     
