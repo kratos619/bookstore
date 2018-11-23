@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Cart;
 use Illuminate\Http\Request;
 use App\Product;
+use Session;
 
 class ShoppingController extends Controller
 {
@@ -55,6 +56,7 @@ class ShoppingController extends Controller
 
         
         //dd(Cart::content());
+        Session::flash('success', 'Add To Cart');
 
         return redirect()->route('cart');
     }

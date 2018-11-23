@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Mail;
 use Illuminate\Http\Request;
 use Cart;
 use App\Product;
 use Stripe\Stripe;
 use Stripe\Charge;
+use Session;
 
 class CheckoutController extends Controller
 {
@@ -29,7 +31,13 @@ class CheckoutController extends Controller
             'source' =>request()->stripeToken
         ]);
 
-        dd('yment success');
+        //dd('yment success');
         //dd($charge);
+        Cart::destroy();
+        Mail::to(request()->stripeEmail)->send(new \App\Mail\PurchesSuccessfull);
+
+        Session::flash('success', 'Purches Successfull  we Send U Details');
+      
+        return redirect('/');
     }
 }
