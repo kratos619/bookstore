@@ -37,6 +37,28 @@ class ShoppingController extends Controller
         return view('cart');
     }
 
+    public function addRapid($id)
+    {
+        
+        //$pdt =request();
+        
+        $pdt = Product::find($id);
+        
+        $cartItem = Cart::add([
+            'id' => $pdt->id,
+            'name' => $pdt->name,
+            'qty' => 1,
+            'price' => $pdt->price
+        ]);
+
+        Cart::associate($cartItem->rowId, 'App\Product');
+
+        
+        //dd(Cart::content());
+
+        return redirect()->route('cart');
+    }
+
     public function cart_delete($id)
     {
         Cart::remove($id);

@@ -24,7 +24,7 @@
                         <div class="books-price">${{$item->price}}</div>
                         </div>
 
-                        <a href="19_cart.html" class="btn btn-small btn--dark add">
+                        <a href="{{route('cart.rapid.add',['id'=> $item->id])}}" class="btn btn-small btn--dark add">
                             <span class="text">Add to Cart</span>
                             <i class="seoicon-commerce"></i>
                         </a>
