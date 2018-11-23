@@ -41,7 +41,7 @@
 
                                     <div class="cart-product__item">
                                         <a href="#">
-                                            <img src="{{$item->image}}" alt="product" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image">
+                                            <img src="{{$item->model->image}}" alt="product" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image">
                                         </a>
                                         <div class="cart-product-content">
                                           
