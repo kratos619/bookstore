@@ -12,20 +12,20 @@ class ShoppingController extends Controller
     {
         
         //$pdt =request();
-        dd($request->p_id);
+        $selected_item = $request->pdt_id;
         
-        //$pdt = Product::find();
+        $pdt = Product::find($selected_item);
         
-        // $cart = Cart::add([
-        //     'id' => $pdt->id,
-        //     'name' => $pdt->name,
-        //     'qty' => request()->qty,
-        //     'price' => $pdt->price
-        // ]);
+        $cart = Cart::add([
+            'id' => $pdt->id,
+            'name' => $pdt->name,
+            'qty' => request()->qty,
+            'price' => $pdt->price
+        ]);
         
-        //dd($pdt);
+        //dd($cart);
 
-        // return redirect()->route('cart');
+        return redirect()->route('cart');
     }
 
     public function cart()
