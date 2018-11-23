@@ -91,17 +91,17 @@
 							</a>
 							
 							<span style="float: right;">
-								<form action="/your-server-side-code" method="POST">
-									  <script
-									    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-									    data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-									    data-amount="999"
-									    data-name="Stripe.com"
-									    data-description="Widget"
-									    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-									    data-locale="auto"
-									    data-zip-code="true">
-									  </script>
+							<form action="{{route('cart.checkoutItem')}}" method="POST">
+								{{ csrf_field() }}	
+								<script
+										src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+										data-key="pk_test_aH2AD39apCWmXxO65xXXH6Bp"
+										data-amount="999"
+										data-name="MyBooks"
+										data-description="Buy Book Easy And Secure"
+										data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+										data-locale="auto">
+									</script>
 								</form>
 							</span>
 						</div>
