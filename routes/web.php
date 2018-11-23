@@ -40,6 +40,13 @@ Route::get('/cart/delete/{id}', [
     'as' => 'cart.delete'
 ]);
 
+/// checkoutssss
+
+Route::get('/cart/checkout', [
+    'uses' => 'CheckoutController@index',
+    'as' => 'cart.checkout'
+]);
+
 Route::resource('products', 'ProductsController');
 Auth::routes();
 
