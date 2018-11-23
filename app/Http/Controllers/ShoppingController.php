@@ -23,7 +23,7 @@ class ShoppingController extends Controller
             'price' => $pdt->price
         ]);
         
-        //dd($cart);
+        //dd(Cart::content());
 
         return redirect()->route('cart');
     }

@@ -10,7 +10,7 @@
 
                     <div class="cart">
 
-                        <h1 class="cart-title">In Your Shopping Cart: <span class="c-primary"> 4 items</span></h1>
+                        <h1 class="cart-title">In Your Shopping Cart: <span class="c-primary"> {{Cart::content()->count()}}</span></h1>
 
                     </div>
 
@@ -27,7 +27,8 @@
                             </tr>
                             </thead>
                             <tbody>
-
+                                @foreach (Cart::content() as $item)
+                                    
                             <tr class="cart_item">
 
                                 <td class="product-remove">
@@ -40,35 +41,36 @@
 
                                     <div class="cart-product__item">
                                         <a href="#">
-                                            <img src="img/cart-product4.png" alt="product" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image">
+                                            <img src="{{$item->image}}" alt="product" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image">
                                         </a>
                                         <div class="cart-product-content">
-                                            <p class="cart-author">Callum Bailey</p>
-                                            <h5 class="cart-product-title">Search Marketing</h5>
+                                          
+                                            <h5 class="cart-product-title">{{$item->title}}</h5>
                                         </div>
                                     </div>
                                 </td>
 
                                 <td class="product-price">
-                                    <h5 class="price amount">$58.00</h5>
+                                <h5 class="price amount">${{$item->price}}</h5>
                                 </td>
 
                                 <td class="product-quantity">
 
                                     <div class="quantity">
                                         <a href="#" class="quantity-minus">-</a>
-                                        <input title="Qty" class="email input-text qty text" type="text" placeholder="1" readonly>
+                                    <input title="Qty" value="{{$item->qty}}" class="email input-text qty text" type="text" placeholder="1" readonly>
                                         <a href="#" class="quantity-plus">+</a>
                                     </div>
 
                                 </td>
 
                                 <td class="product-subtotal">
-                                    <h5 class="total amount">$58.00</h5>
+                                    <h5 class="total amount">${{$item->total()}}</h5>
                                 </td>
 
                             </tr>
 
+                                @endforeach
                             
 
                             <tr>
